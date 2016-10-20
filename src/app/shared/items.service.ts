@@ -4,6 +4,7 @@ import { Headers, RequestOptions } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/catch';
 import 'rxjs/add/operator/map';
+import 'rxjs/add/observable/throw';
 
 import { Item } from './item';
 
@@ -20,7 +21,7 @@ export class ItemsService {
     }
 
     getItems(): Observable<Item[]> {
-        return this.http.get(this.itemsUrl)
+        return this.http.get(this.itemsUrl, this.options)
             .map(this.extractData) // TODO: Simplify
             .catch(this.handleError);
     }
@@ -46,14 +47,7 @@ export class ItemsService {
     }
 
     private handleError(error: any) {
-        // In a real world app, we might use a remote logging infrastructure
-        // We'd also dig deeper into the error to get a better message.
-        let errorMessage = (error.messasge) ? error.message :
-            error.status ? `${error.status} - ${error.statusText}` : 'Server Error';
-
-        console.error(errorMessage);
-
-        return Observable.throw(errorMessage);
+        return Observable.throw(error.json().error || 'Server Error');
     }
 
 }

@@ -1,5 +1,10 @@
 export class Item {
-    constructor(
-        public id: number,
-        public name: string) { }
+    id: number;
+    name: string;
+    editing: boolean;
+
+    constructor(id: number, name: string) {
+        this.id = id;
+        this.name = name;
+    }
 }

@@ -1,8 +1,12 @@
-<h1>
-	ng2-http-client-demo
-</h1>
+<h1>Items List</h1>
 
-<table>
+<div class="alert alert-danger" *ngIf="errorMessage">
+	<p>
+		<strong>Oh snap!</strong>&nbsp;{{ errorMessage }}
+	</p>
+</div>
+
+<table class="table table-striped">
 
 	<thead>
 		<tr>
@@ -16,8 +20,10 @@
 			<td>
 				<span>{{ item.name }}</span>
 			</td>
-			<td>
-				<button (click)="delete(item)">Delete</button>
+			<td class="text-right">
+				<button (click)="deleteItem(item)" class="btn btn-danger">
+					<span class="fa fa-times"></span>
+				</button>
 			</td>
 		</tr>
 	</tbody>
@@ -25,10 +31,12 @@
 	<tfoot>
 		<tr>
 			<td>
-				<input type="text" placeholder="New Item..." #newItemName />
+				<input #newItemName class="form-control" type="text" placeholder="New Item..." />
 			</td>
 			<td>
-				<button (click)="add(newItemName.value); newItemName.value = ''">Add</button>
+				<button (click)="addItem(newItemName.value); newItemName.value = ''" class="btn btn-primary">
+					<span class="fa fa-plus"></span>
+				</button>
 			</td>
 		</tr>
 	</tfoot>

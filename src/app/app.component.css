@@ -1,0 +1,4 @@
+table>thead>tr>th:nth-last-child(1), table>tbody>tr>td:nth-last-child(1) {
+    width: 50px;
+    max-width: 50px;
+}

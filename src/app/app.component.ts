@@ -18,20 +18,24 @@ export class AppComponent implements OnInit {
   constructor(private itemsService: ItemsService) { }
 
   ngOnInit() {
+    this.getItems();
+  }
+
+  getItems() {
     this.itemsService.getItems()
       .subscribe(
       items => this.items = items,
       error => this.errorMessage = <any>error);
   }
 
-  add(name: string) {
+  addItem(name: string) {
     this.itemsService.addItem(name)
       .subscribe(
       item => this.items.push(item),
       error => this.errorMessage = <any>error);
   }
 
-  delete(item: any) {
+  deleteItem(item: any) {
     if (confirm('Delete ' + item.name + '?')) {
       this.itemsService.deleteItem(item)
         .subscribe(
