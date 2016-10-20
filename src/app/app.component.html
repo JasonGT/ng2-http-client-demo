@@ -1,0 +1,36 @@
+<h1>
+	ng2-http-client-demo
+</h1>
+
+<table>
+
+	<thead>
+		<tr>
+			<th>Name</th>
+			<th>&nbsp;</th>
+		</tr>
+	</thead>
+
+	<tbody>
+		<tr *ngFor="let item of items">
+			<td>
+				<span>{{ item.name }}</span>
+			</td>
+			<td>
+				<button (click)="delete(item)">Delete</button>
+			</td>
+		</tr>
+	</tbody>
+
+	<tfoot>
+		<tr>
+			<td>
+				<input type="text" placeholder="New Item..." #newItemName />
+			</td>
+			<td>
+				<button (click)="add(newItemName.value); newItemName.value = ''">Add</button>
+			</td>
+		</tr>
+	</tfoot>
+
+</table>
