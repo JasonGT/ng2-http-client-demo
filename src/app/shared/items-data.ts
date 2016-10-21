@@ -5,10 +5,10 @@ import { Item } from './item';
 export class ItemsData implements InMemoryDbService {
   createDb() {
     let items = [
-      new Item(1, 'Item 1'),
-      new Item(2, 'Item 2'),
-      new Item(3, 'Item 3'),
-      new Item(4, 'Item 4')
+      new Item(1, 'One bad programmer can easily create two new jobs a year'),
+      new Item(2, 'pro-gram-mer: n. an organism that turns caffine into software'),
+      new Item(3, 'My code is guaranteed 100% mistrake free.'),
+      new Item(4, '!false: it\'s funny because it\'s true.')
     ];
 
     return {items};

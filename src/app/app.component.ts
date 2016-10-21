@@ -13,6 +13,8 @@ export class AppComponent implements OnInit {
 
   items: Item[] = [];
 
+  newItem: string;
+
   errorMessage: string;
 
   constructor(private itemsService: ItemsService) { }
@@ -24,31 +26,37 @@ export class AppComponent implements OnInit {
   getItems() {
     this.itemsService.getItems()
       .subscribe(
-      items => this.items = items,
-      error => this.errorMessage = <any>error);
+        items => this.items = items,
+        error => this.setError);
   }
 
-  addItem(name: string) {
-    if (!name) { return; }
+  addItem() {
+    if (!this.newItem) { return; }
 
-    this.itemsService.addItem(name)
+    this.itemsService.addItem(this.newItem)
       .subscribe(
-      item => this.items.push(item),
-      error => this.errorMessage = <any>error);
+        item => this.items.push(item),
+        error => this.setError);
   }
 
   deleteItem(item: Item) {
     if (confirm('Delete ' + item.name + '?')) {
       this.itemsService.deleteItem(item.id)
         .subscribe(
-        () => {
-          let index = this.items.indexOf(item);
-          if (index > -1) {
-            this.items.splice(index, 1);
-          }
-        },
-        error => this.errorMessage = <any>error);
+          () => this.removeItem,
+          error => this.setError);
     }
+  }
+
+  removeItem(item: Item) {
+    let index = this.items.indexOf(item);
+    if (index > -1) {
+      this.items.splice(index, 1);
+    }
+  }
+
+  setError(error: any) {
+    this.errorMessage = error;
   }
 
 }

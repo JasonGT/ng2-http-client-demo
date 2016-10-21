@@ -31,10 +31,10 @@
 	<tfoot>
 		<tr>
 			<td>
-				<input #newItemName class="form-control" type="text" placeholder="New Item..." />
+				<input [(ngModel)]="newItem" class="form-control" type="text" placeholder="New Item..." />
 			</td>
 			<td>
-				<button (click)="addItem(newItemName.value); newItemName.value = ''" class="btn btn-primary">
+				<button (click)="addItem();" class="btn btn-primary">
 					<span class="fa fa-plus"></span>
 				</button>
 			</td>
