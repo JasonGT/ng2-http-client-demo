@@ -27,7 +27,7 @@ export class AppComponent implements OnInit {
     this.itemsService.getItems()
       .subscribe(
         items => this.items = items,
-        error => this.setError);
+        error => this.setError(error));
   }
 
   addItem() {
@@ -36,15 +36,15 @@ export class AppComponent implements OnInit {
     this.itemsService.addItem(this.newItem)
       .subscribe(
         item => this.items.push(item),
-        error => this.setError);
+        error => this.setError(error));
   }
 
   deleteItem(item: Item) {
     if (confirm('Delete ' + item.name + '?')) {
       this.itemsService.deleteItem(item.id)
         .subscribe(
-          () => this.removeItem,
-          error => this.setError);
+          () => this.removeItem(item),
+          error => this.setError(error));
     }
   }
 

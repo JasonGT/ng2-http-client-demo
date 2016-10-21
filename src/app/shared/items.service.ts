@@ -41,12 +41,12 @@ export class ItemsService {
             .catch(this.handleError);
     }
 
-    private extractData(response: Response) {
+    extractData(response: Response) {
         let body = response.json();
         return body.data || {};
     }
 
-    private handleError(error: any) {
+    handleError(error: any) {
         return Observable.throw(error.json().error || 'Server Error');
     }
 
