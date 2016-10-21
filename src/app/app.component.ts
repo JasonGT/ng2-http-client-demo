@@ -13,7 +13,7 @@ export class AppComponent implements OnInit {
 
   items: Item[] = [];
 
-  errorMessage: string; // TODO: Display this error.
+  errorMessage: string;
 
   constructor(private itemsService: ItemsService) { }
 
@@ -29,15 +29,17 @@ export class AppComponent implements OnInit {
   }
 
   addItem(name: string) {
+    if (!name) { return; }
+
     this.itemsService.addItem(name)
       .subscribe(
       item => this.items.push(item),
       error => this.errorMessage = <any>error);
   }
 
-  deleteItem(item: any) {
+  deleteItem(item: Item) {
     if (confirm('Delete ' + item.name + '?')) {
-      this.itemsService.deleteItem(item)
+      this.itemsService.deleteItem(item.id)
         .subscribe(
         () => {
           let index = this.items.indexOf(item);

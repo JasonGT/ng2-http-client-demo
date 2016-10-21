@@ -22,7 +22,7 @@ export class ItemsService {
 
     getItems(): Observable<Item[]> {
         return this.http.get(this.itemsUrl, this.options)
-            .map(this.extractData) // TODO: Simplify
+            .map(this.extractData)
             .catch(this.handleError);
     }
 
